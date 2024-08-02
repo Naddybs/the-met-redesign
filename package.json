@@ -1,5 +1,21 @@
 {
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.19.2"
-  }
+  },
+  "name": "the-met-redesign",
+  "description": "\"Ontwerp en bouw een website voor The met museum\"",
+  "version": "1.0.0",
+  "type":"module",
+  "main": "server.js",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "author": "Nadira Ben Salah",
+  "license": "ISC",
+  "homepage": "https://github.com/Naddybs/the-met-redesign#readme"
+  
 }
