@@ -1,23 +1,54 @@
-// Hiermee maak je een nieuwe express app
-// Deze app is een object met een aantal methodes die je kunt gebruiken om een server te maken en routes te definiëren
-// Met import express from 'express'; importeer je de express module uit de node_modules map
-const app = express();
+
+//// SERVER OPZETTEN///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 import express from 'express';
 
-// Hiermee geef je aan dat je de ejs templating engine wilt gebruiken
-// De ejs templating engine is een manier om dynamische HTML pagina's te maken
-// De server zoekt de ejs bestanden in de views map en de public map voor statische bestanden
+const app = express();
+
 app.set('view engine', 'ejs');
-app.set('views', './views')
+app.set('views', './views');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-// Hiermee start je de server op poort 3000
-// De server luistert naar requests op poort 3000 en geeft respones terug aan de client
+// Helper functie om JSON data op te halen uit url, omzetten naar object en retourneren
+const fetchJson = async (url) => {
+  const response = await fetch(url);
+  return response.json();
+};
+
+////API'S DEFINIEREN EN BIJBEHORENDE DATA OPHALEN///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Endpoint URL's
+const departmentsUrl = 'https://collectionapi.metmuseum.org/public/collection/v1/departments';
+
+// Haal de afdelingen op
+// haalt de afdelingen op uit de departmentsUrl en retourneer de afdelingen
+const fetchDepartments = async () => {
+  const data = await fetchJson(departmentsUrl);
+  return data.departments;
+};
+
+// Haal kunstwerken binnen een afdeling op
+// haalt de objecten op uit de departmentId en retourneer de objecten
+// departmentId is een parameter die de afdeling identificeert hierdoor kun je de objecten van een specifieke afdeling ophalen
+// de objecten worden opgehaald uit de API en de eerste 10 objecten worden geretourneerd, dit gebeurt door de slice methode
+const fetchDepartmentObjects = async (departmentId) => {
+  const objectsUrl = `https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${departmentId}`;
+  const data = await fetchJson(objectsUrl);
+  return data.objectIDs.slice(0, 10); // Haal de eerste 10 objecten op
+};
+
+// Haal details van een individueel kunstwerk op
+// haalt de details van een object op door het objectId te gebruiken als parameter en retourneer de details nadat deze zijn opgehaald
+// hiermeee kun je de details van een specifiek object ophalen
+const fetchObjectDetails = async (objectId) => {
+  const objectUrl = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectId}`;
+  const data = await fetchJson(objectUrl);
+  return data;
+};
+
+////POORT INSTELLEN OM SERVER TE STARTEN//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), () => {
   console.log(`Server is running at http://localhost:${app.get('port')}`);
 });
-
-
-
