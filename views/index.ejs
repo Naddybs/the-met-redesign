@@ -9,5 +9,44 @@
 <body>
     <h1>Afdelingen van het Met Museum</h1>
 
+    <!-- Lijst van afdelingen -->
+    <ul>
+        <% departments.forEach(department => { %>
+            <li>
+                <strong><%= department.displayName %></strong>
+                <ul>
+                    <li><strong>ID:</strong> <%= department.departmentId %></li>
+                    <li>
+                        <a href="/department/<%= department.departmentId %>">Bekijk kunstwerken</a>
+                    </li>
+                </ul>
+            </li>
+        <% }) %>
+    </ul>
+
+    <!-- Lijst van kunstwerken met detatils -->
+    <h2>Kunstwerken</h2>
+    <% if (objects && objects.length > 0) { %>
+        <ul>
+            <% objects.forEach(object => { %>
+                <li>
+                    <strong><%= object.title %></strong>
+                    <ul>
+                        <li><strong>Artist:</strong> <%= object.artistDisplayName %></li>
+                        <li><strong>Date:</strong> <%= object.objectDate %></li>
+                        <li><strong>Medium:</strong> <%= object.medium %></li>
+                        <li><strong>Dimensions:</strong> <%= object.dimensions %></li>
+                        <li><strong>Department:</strong> <%= object.department %></li>
+                        <li><strong>accessionYear
+                        <li>
+                            <img src="<%= object.primaryImage %>" alt="<%= object.title %>" width="300">
+                        </li>
+                    </ul>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Geen kunstwerken gevonden.</p>
+    <% } %>
 </body>
 </html>
