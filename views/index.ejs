@@ -1,52 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Met Museum Collection</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-<body>
-    <h1>Afdelingen van het Met Museum</h1>
+<%- include('./partials/head') %> <!-- Deze regel voegt de inhoud van head.ejs toe aan de pagina -->
 
-    <!-- Lijst van afdelingen -->
-    <ul>
-        <% departments.forEach(department => { %>
-            <li>
-                <strong><%= department.displayName %></strong>
-                <ul>
-                    <li><strong>ID:</strong> <%= department.departmentId %></li>
-                    <li>
-                        <a href="/department/<%= department.departmentId %>">Bekijk kunstwerken</a>
-                    </li>
-                </ul>
-            </li>
-        <% }) %>
-    </ul>
+<!-- HERO SECTION -->
+<header class="hero-section">
+    <section class="hero-image-bg"></section>
 
-    <!-- Lijst van kunstwerken met detatils -->
-    <h2>Kunstwerken</h2>
-    <% if (objects && objects.length > 0) { %>
-        <ul>
-            <% objects.forEach(object => { %>
-                <li>
-                    <strong><%= object.title %></strong>
-                    <ul>
-                        <li><strong>Artist:</strong> <%= object.artistDisplayName %></li>
-                        <li><strong>Date:</strong> <%= object.objectDate %></li>
-                        <li><strong>Medium:</strong> <%= object.medium %></li>
-                        <li><strong>Dimensions:</strong> <%= object.dimensions %></li>
-                        <li><strong>Department:</strong> <%= object.department %></li>
-                        <li><strong>accessionYear
-                        <li>
-                            <img src="<%= object.primaryImage %>" alt="<%= object.title %>" width="300">
-                        </li>
-                    </ul>
-                </li>
+    <aside class="hero-overlay"></aside> 
+
+    <article class="hero-content">
+        <h1 class="hero-title">
+            <span class="red-block">The Met Museum Collection</span>
+        </h1>
+    </article>
+</header>
+
+<!----------------------------------------------------------->
+
+<!-- DEPARTMENTS SECTION -->
+    <section class="departments-section">
+        <h2>Explore Our Collections</h2>
+            <% departments.forEach(department => { %>
+                <article class="collection-card">
+                    <a href="/department/<%= department.departmentId %>">
+                            <h3><%= department.displayName %></h3>
+                            <p>Discover the masterpieces of the <%= department.displayName %> collection.</p>
+                    </a>
+                </article>
             <% }) %>
-        </ul>
-    <% } else { %>
-        <p>Geen kunstwerken gevonden.</p>
-    <% } %>
+    </section>
+<!-------------------------------------------------->
+
 </body>
 </html>

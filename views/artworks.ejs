@@ -1,0 +1,32 @@
+<%- include('./partials/head') %>
+
+<!-- HERO SECTION -->
+<header class="hero-section">
+    <article class="hero-content">
+        <h1 class="hero-title">Kunstwerken in deze Collectie</h1>
+    </article>
+</header>
+<!-------------------------------------------------->
+<!-- ARTWORKS SECTION -->
+<!-- Ik heb gebruik gemaakt van aria-labelledby en aria-describedby om de tooegankelijkheid te verbeteren-->
+<section class="artworks-section" aria-labelledby="artworks-heading">
+    <h2 id="artworks-heading">Masterpieces</h2>
+    <ul class="artworks-container">
+        <% objects.forEach(object => { %>
+            <li class="artwork-card">
+                <a href="/artwork/<%= object.objectID %>" aria-labelledby="title-<%= object.objectID %>" aria-describedby="details-<%= object.objectID %>">
+                    <figure>
+                        <img src="<%= object.primaryImageSmall %>" alt="<%= object.title %> by <%= object.artistDisplayName %>">
+                        <figcaption id="details-<%= object.objectID %>">
+                            <h3 id="title-<%= object.objectID %>"><%= object.title %></h3>
+                            <p><%= object.artistDisplayName %> - <%= object.objectDate %></p>
+                        </figcaption>
+                    </figure>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</section>
+<!-------------------------------------------------->
+</body>
+</html>

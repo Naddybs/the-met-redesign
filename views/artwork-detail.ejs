@@ -1,0 +1,27 @@
+<%- include('./partials/head') %>
+
+<!-- HERO SECTION -->
+<header class="hero-section">
+    <article class="hero-content">
+        <h1 class="hero-title"><%= object.title %></h1>
+    </article>
+</header>
+<!-------------------------------------------------->
+
+<!-- ARTWORK DETAIL SECTION -->
+<section class="artwork-detail-section">
+    <figure class="artwork-detail">
+        <img src="<%= object.primaryImage %>" alt="<%= object.title %> by <%= object.artistDisplayName %>">
+        <figcaption class="artwork-info">
+            <h2 id="artwork-title"><%= object.title %></h2>
+            <p><strong>Artist:</strong> <%= object.artistDisplayName %></p>
+            <p><strong>Date:</strong> <%= object.objectDate %></p>
+            <p><strong>Medium:</strong> <%= object.medium %></p>
+            <p><strong>Dimensions:</strong> <%= object.dimensions %></p>
+            <p><strong>Description:</strong> <%= object.description %></p>
+        </figcaption>
+    </figure>
+</section>
+<!-------------------------------------------------->
+</body>
+</html>

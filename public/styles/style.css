@@ -1,0 +1,41 @@
+/* -------------------------------------MAIN STYLING--------------------------------------------------- */
+:root{
+    --primary-color: #E4002B;
+    --secundary-color: #6E182E;
+    --color-accordion:#ae2d51;
+    --accent-color: #f4c3cc;
+    --text-color:  #333;
+    --text-color-accent:#65696a;
+    --background-color: #F8F8F8;
+
+    --font-met-serif: 'The Met Serif', serif;
+    --font-met-sans: 'The Met Sans', sans-serif;
+}
+    @font-face {
+        font-family: 'The Met Serif';
+        src: url('fonts/TheMetSerif-Regular.woff2') format('woff2'),
+             url('fonts/TheMetSerif-Regular.woff') format('woff');
+    }
+    
+    @font-face {
+        font-family: 'The Met Sans';
+        src: url('fonts/TheMetSans-Regular.woff2') format('woff2'),
+             url('fonts/TheMetSans-Regular.woff') format('woff');
+    }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-met-sans);
+    font-weight: 400;
+    line-height: 1.5555;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+    color: var(--text-color);
+}
+
+
+
+
+
+
