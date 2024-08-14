@@ -26,57 +26,23 @@
     <h2>Explore Our Collections</h2>
     <section class="departments-container">
         <% departments.forEach(department => { %>
-            <article class="collection-card">
-                <figure>
-                    <a href="/department/<%= department.departmentId %>">
-                        <% if (department.departmentId == 1) { %>
-                            <img src="/assets/american-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 3) { %>
-                            <img src="/assets/ancientnear-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 4) { %>
-                            <img src="/assets/armor-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 5) { %> 
-                            <img src="/assets/oceanic-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 6) { %>
-                            <img src="/assets/asian-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                            <% } else if (department.departmentId == 7) { %> 
-                                <img src="/assets/armor-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 8) { %>
-                             <img src="/assets/costume-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 9) { %>
-                            <img src="/assets/drawings-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 10) { %>
-                            <img src="/assets/egyptian-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 11) { %>
-                            <img src="/assets/european-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 12) { %>
-                            <img src="/assets/sculpture-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 13) { %>
-                            <img src="/assets/greek-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 14) { %>
-                            <img src="/assets/islamic-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 15) { %>
-                            <img src="/assets/lehman-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 16) { %>
-                            <img src="/assets/watson-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 17) { %>
-                            <img src="/assets/medieval-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 18) { %>
-                            <img src="/assets/musical-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 19) { %>
-                            <img src="/assets/photographs-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } else if (department.departmentId == 21) { %>
-                            <img src="/assets/modern-dep.webp" alt="<%= department.displayName %>" style="width:100%">
-                        <% } %>
+            <details class="collection-card">
+                <summary>
+                    <figure>
+                        <img src="<%= departmentImage(department.departmentId) %>" alt="<%= department.displayName %>" style="width:100%">
                         <figcaption class="card-caption">
                             <h3><%= department.displayName %></h3>
-                            <p>Discover the masterpieces of the <%= department.displayName %> collection.</p>
                         </figcaption>
-                    </a>
-                </figure>
-            </article>
+                    </figure>
+                </summary>
+                <p>Discover the masterpieces of the <%= department.displayName %> collection.</p>
+            </details>
         <% }) %>
     </section>
+</section>
+</body>
+</html>
+
 </section>
 </body>
 </html>

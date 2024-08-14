@@ -50,7 +50,7 @@ return data;
 // Route voor de homepage, dit bevat een lijst van afdelingen en een lijst van objecten
 app.get('/', async (req, res) => {
   const departments = await fetchDepartments(); // Haalt de afdelingen op
-  res.render('index', { departments, objects: [] }); // Renderr de index pagina met de afdelingen
+  res.render('index', { departments, departmentImage, objects: [] }); // Renderr de index pagina met de afdelingen
 });
 
 // Route voor het ophalen van de objecten van een specifieke afdeling
@@ -75,6 +75,36 @@ app.get('/artwork/:objectId', async (req, res) => {
   res.render('artwork-detail', { object }); // Rendert de artwork-detail pagina met de details van het kunstwerk
 });
 
+////Afbeeldingen dynamisch koppelen aan departments/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Eerst heb ik een functie departmentImage gemaakt die een departmentId als parameter accepteert en een afbeelding retourneert die overeenkomt met de afdeling
+// switch statement controleert de waarde van departmentId 
+// case statements staan gelijk aan de departmentID's
+// return statement retourneert de afbeelding die overeenkomt met de departmentID
+// in de route handler voor de homepage, heb ik de departmentImage functie toegevoegd aan de render methode
+function departmentImage(departmentId) {
+    switch(departmentId) {
+        case 1: return '/assets/american-dep.webp';
+        case 3: return '/assets/ancientnear-dep.webp';
+        case 4: return '/assets/armor-dep.webp';
+        case 5: return '/assets/oceanic-dep.webp';
+        case 6: return '/assets/asian-dep.webp';
+        case 7: return '/assets/armor-dep.webp';
+        case 8: return '/assets/costume-dep.webp';
+        case 9: return '/assets/drawings-dep.webp';
+        case 10: return '/assets/egyptian-dep.webp';
+        case 11: return '/assets/european-dep.webp';
+        case 12: return '/assets/sculpture-dep.webp';
+        case 13: return '/assets/greek-dep.webp';
+        case 14: return '/assets/islamic-dep.webp';
+        case 15: return '/assets/lehman-dep.webp';
+        case 16: return '/assets/watson-dep.webp';
+        case 17: return '/assets/medieval-dep.webp';
+        case 18: return '/assets/musical-dep.webp';
+        case 19: return '/assets/photographs-dep.webp';
+        case 21: return '/assets/modern-dep.webp';
+    }
+}
 ////POORT INSTELLEN OM SERVER TE STARTEN//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.set('port', process.env.PORT || 3000);
