@@ -30,7 +30,7 @@ body {
     font-weight: 400;
     line-height: 1.5555;
     -webkit-font-smoothing: antialiased;
-    background-color: #fff;
+    background-color: #cbcbcb;
     color: var(--text-color);
 }
 
@@ -171,7 +171,11 @@ font-size: .75em;
 .collection-card {
     width: 100%;
     border-radius: .3em;
-    background-image: linear-gradient(153deg, #6e182e 10%, #e4002b 90%);
+    background-color: var(--primary-color);
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    /* background-image: linear-gradient(153deg, #6e182e 10%, #e4002b 90%); */
     color: white;
     cursor: pointer;
     padding: .6em;
@@ -183,6 +187,25 @@ font-size: .75em;
         font-family: var(--font-met-serif);
     }
 }
+.collection-card::after {
+    content: "\276F";
+    color: black;
+    position: relative;
+    top: .75em;
+    margin: 1em;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transform: rotate(90deg);
+    transition: transform 0.5s ease, color 0.5s ease;
+}
+
+.collection-card:focus::after,
+.collection-card:hover::after {
+    transform: rotate(270deg); 
+    color: white; 
+}
+
 .collection-card:focus,
 .collection-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -196,7 +219,7 @@ font-size: .75em;
     & figure {
         margin: 1em;
         padding: .8em;
-        background-color: #eebad73d;
+        background-color: white;
         border: 2px solid var(--primary-color);
         border-radius: 8px;
     }
