@@ -24,7 +24,9 @@
 <!-- DEPARTMENTS SECTION -->
 
 <section class="departments-section">
-    <h2>Explore Our Collections</h2>
+    <h2>The Met Collection</h2>
+    <!-- <p>Travel around the world and across 5,000 years of history through 490,000+ works of art.
+    </p> -->
      <section class="departments-container">
      <% departments.forEach((department, index) => { %>
         <input type="radio" name="accordion" id="section-<%= index %>" class="accordion-radio">
@@ -33,7 +35,7 @@
             </label>
                  <div class="accordion-content">
                      <figure>
-                         <img src="<%= departmentImage(department.departmentId) %>" alt="<%= department.displayName %>" style="width: 100%;">
+                         <img src="<%= departmentImage(department.departmentId) %>" alt="<%= department.displayName %>">
                          <figcaption>
                              <p>
                              <span class="department-title"><%= department.displayName %></span>

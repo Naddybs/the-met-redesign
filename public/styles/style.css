@@ -185,6 +185,7 @@ font-size: .75em;
     outline: none;
     & h3{
         font-family: var(--font-met-serif);
+        text-align: left;
     }
 }
 .collection-card::after {
@@ -269,25 +270,80 @@ font-size: .75em;
 
 @media (min-width: 768px) {
     .departments-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1em;
+        display: flex;
+        width: 100%;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        flex-direction: row;
+        margin: 0;
+        justify-content: space-between;
     }
     .collection-card {
         display: none;
     }
     .accordion-content {
-        max-height: none; 
-        &figure {
-            text-align: left;
-        }
-        & img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        & p {
-            color: var(--text-color);
-        }
+            max-height: none;
+            max-height: 500px;
+            min-width: 400px;
+            height: 500px;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease, filter 0.3s ease, z-index 0.3s ease;
     }
+    .accordion-content:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        filter: brightness(1.2);
+    }
+    .accordion-content:hover ~ .accordion-content {
+        filter: brightness(0.6);
+    }
+    
+    .accordion-content figure{
+        color: white;
+        background-color: var(--primary-color);
+        width: 18em;
+        min-height: 25em;
+    }
+
+    .accordion-content:hover figure {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .accordion-content img {
+        width: 318px;
+        height: 240px;
+        position: relative;
+        right: .93em;
+        bottom: 1em;
+        border-top-left-radius: .5em;
+        border-top-right-radius: .5em;
+    }
+    .accordion-content figcaption{
+        margin-top: 0;
+    }
+    .accordion-content p {
+        color: #f8f8f8;
+        font-size: 1.1em;
+    }
+    .explore-button{
+        background-color: #f8f8f8;
+        color: #e4002b;
+    }
+    .department-title{
+        color: white;
+    }
+      .departments-container::-webkit-scrollbar {
+        height: 12px;
+    }
+
+    .departments-container::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 6px;
+    }
+
+    .departments-container::-webkit-scrollbar-track {
+        background-color: #ddd;
+    }
+
 }
 /* -------------------------------------DEPARTMENTS SECTION STYLING end--------------------------------------------------- */
