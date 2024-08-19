@@ -146,13 +146,25 @@ font-size: .75em;
         font-size: 3rem;
     }
     .hero-image-bg {
-        height: 20em;
-        & img {
-            width: 100%;
-            height: 100%;
-        }
+     display: none;
+    }
+    .hero-overlay{
+    background-image: linear-gradient(275deg, #6e182e 0%, #e4002b 100%);
+    }
+    .hero-section{
+        height: 40vh;
+    }
+    .red-block {
+        background-color: transparent;
+    }
+    .black-block {
+        background-color: #cbcbcb;
+        color: #b20526;
+        font-size: .75em;
     }
 }
+
+
 /* -------------------------------------DEPARTMENTS SECTION STYLING --------------------------------------------------- */
 
 .departments-container {
@@ -182,7 +194,7 @@ font-size: .75em;
     text-align: center;
     transition: box-shadow 0.3s ease;
     text-transform: uppercase;
-    outline: none;
+    outline: pink solid 2px;
     & h3{
         font-family: var(--font-met-serif);
         text-align: left;
@@ -282,9 +294,8 @@ font-size: .75em;
         display: none;
     }
     .accordion-content {
-            max-height: none;
             max-height: 500px;
-            min-width: 400px;
+            min-width: 350px;
             height: 500px;
             scroll-snap-align: start;
             transition: transform 0.3s ease, filter 0.3s ease, z-index 0.3s ease;
@@ -300,7 +311,7 @@ font-size: .75em;
     
     .accordion-content figure{
         color: white;
-        background-color: var(--primary-color);
+        background-image: linear-gradient(275deg, #6e182e 0%, #e4002b 100%);
         width: 18em;
         min-height: 25em;
     }
@@ -344,6 +355,23 @@ font-size: .75em;
     .departments-container::-webkit-scrollbar-track {
         background-color: #ddd;
     }
+    .accordion-content.active {
+        transform: scale(1.1);
+        z-index: 10;
+    }
 
+    .accordion-content.prev,
+    .accordion-content.next {
+        transform: scale(0.9);
+        z-index: 5;
+    } 
+    .departments-section h2{
+        font-size: 2rem;
+        padding-left: 1em;
+        margin-bottom: 0;
+    
+    
+    }
 }
+
 /* -------------------------------------DEPARTMENTS SECTION STYLING end--------------------------------------------------- */
