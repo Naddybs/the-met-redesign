@@ -33,7 +33,7 @@ const fetchDepartments = async () => {
 const fetchDepartmentObjects = async (departmentId) => {
     const objectsUrl = `https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=${departmentId}`;
     const data = await fetchJson(objectsUrl);
-  return data.objectIDs.slice(0, 10); // Haal de eerste 10 objecten op
+  return data.objectIDs.slice(0, 15); // Haal de eerste 10 objecten op
 };
 
 // Functie om details van een specifiek object op te halen
@@ -75,7 +75,18 @@ app.get('/artwork/:objectId', async (req, res) => {
   res.render('artwork-detail', { object }); // Rendert de artwork-detail pagina met de details van het kunstwerk
 });
 
-////Afbeeldingen dynamisch koppelen aan departments/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Route voor het filteren van objecten op basis van afdeling
+// - Hier definieer ik een route voor het filteren van objecten op basis van afdeling
+// - Dit accepteert een departmentId als query parameter
+// - Als er geen departmentId is, retourneert het een foutmelding
+app.get('/filter', async (req, res) => {
+    const { departmentId } = req.query;
+    if (!departmentId) {
+      return res.status(400).json({ error: 'Department ID is required' });
+    }
+  });
+  
+////Afbeeldingen dynamisch koppelen aan departments///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Eerst heb ik een functie departmentImage gemaakt die een departmentId als parameter accepteert en een afbeelding retourneert die overeenkomt met de afdeling
 // switch statement controleert de waarde van departmentId 

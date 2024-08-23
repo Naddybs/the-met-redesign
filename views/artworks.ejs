@@ -1,32 +1,35 @@
 <%- include('./partials/head') %>
 
-<!-- HERO SECTION -->
-<header class="hero-section">
-    <article class="hero-content">
-        <h1 class="hero-title">Kunstwerken in deze Collectie</h1>
-    </article>
+<header class="hero-section2">
+    <h1 class="hero-title2">Artworks In This Collection</h1>
+    <img src="/assets/hero-bg.webp" alt="">
 </header>
-<!-------------------------------------------------->
-<!-- ARTWORKS SECTION -->
-<!-- Ik heb gebruik gemaakt van aria-labelledby en aria-describedby om de tooegankelijkheid te verbeteren-->
-<section class="artworks-section" aria-labelledby="artworks-heading">
-    <h2 id="artworks-heading">Masterpieces</h2>
-    <ul class="artworks-container">
+
+<!-- Filter Section -->
+<section class="filter-section sticky-filter">
+    <form class="filter-form">
+        <label for="department-filter">Filter by Department:</label>
+        <select id="department-filter" aria-label="Department filter">
+            <option value="">Select Department</option>
+            <% departments.forEach(department => { %>
+                <option value="<%= department.departmentId %>"><%= department.displayName %></option>
+            <% }) %>
+        </select>
+    </form>
+</section>
+
+<section class="artworks-section">
+    <ul class="artworks-gallery" id="artworks-gallery" aria-live="polite">
         <% objects.forEach(object => { %>
-            <li class="artwork-card">
-                <a href="/artwork/<%= object.objectID %>" aria-labelledby="title-<%= object.objectID %>" aria-describedby="details-<%= object.objectID %>">
-                    <figure>
-                        <img src="<%= object.primaryImageSmall %>" alt="<%= object.title %> by <%= object.artistDisplayName %>">
-                        <figcaption id="details-<%= object.objectID %>">
-                            <h3 id="title-<%= object.objectID %>"><%= object.title %></h3>
-                            <p><%= object.artistDisplayName %> - <%= object.objectDate %></p>
-                        </figcaption>
-                    </figure>
-                </a>
+            <li class="artwork-item">
+                <img src="<%= object.primaryImageSmall %>" alt="<%= object.title %> by <%= object.artistDisplayName %>">
+                <img src="/assets/default-img.webp" alt="Default Image">
+                <figcaption class="overlay">
+                    <h3><%= object.title %></h3>
+                    <p><%= object.artistDisplayName %> - <%= object.objectDate %></p>
+                    <a href="/artwork/<%= object.objectID %>" class="explore-button">Bekijk Kunstwerk</a>
+                </figcaption>
             </li>
         <% }) %>
     </ul>
 </section>
-<!-------------------------------------------------->
-</body>
-</html>
