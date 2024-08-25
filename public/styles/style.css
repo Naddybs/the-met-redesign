@@ -250,6 +250,7 @@ font-size: .75em;
         margin: 0 0 10px;
         color: var(--text-color);
         text-align: left;
+        padding-left: 0;
     }
 }
 .department-title {
