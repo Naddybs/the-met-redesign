@@ -41,3 +41,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// E-mail form setion /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 1. Ik selecteer de elementen die ik nodig heb uit de DOM: email-form, form-feedback, email, friend-email en de submit button.
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('email-form');
+    const feedback = document.getElementById('form-feedback');
+    const emailField = document.getElementById('email');
+    const friendEmailField = document.getElementById('friend-email');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    // Functie om te controleren of een e-mailadres geldig is
+    const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    // Functie om de status van een veld bij te werken, als het e-mailadres geldig is, wordt de rand groen, anders rood
+    const updateFieldState = (field) => {
+        field.style.borderColor = isValidEmail(field.value) ? 'green' : 'red';
+    };
+
+    //  Dit zorgt ervoor dat de rand van de invoervelden groen of rood wordt wanneer de gebruiker iets invoert
+    emailField.addEventListener('input', () => updateFieldState(emailField));
+    friendEmailField.addEventListener('input', () => updateFieldState(friendEmailField));
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Voorkomt standaard verzending
+        // Controleert of beide e-mailadressen geldig zijn
+        if (isValidEmail(emailField.value) && isValidEmail(friendEmailField.value)) {
+        //    Als de e-mailadressen geldig zijn, wordt de knop gedeactiveerd en de tekst veranderd in 'sending...'
+            submitButton.textContent = 'sending...';
+            submitButton.disabled = true;
+            submitButton.style.backgroundColor = '#ccc'; 
+        //  Maakt een FormData object aan en voegt de waarden van de invoervelden toe
+        //  Dit houdt in dat de waarden van de invoervelden worden verzonden naar de server
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+        // Als de e-mail succesvol is verzonden, wordt de feedback tekst groen en wordt het formulier gereset
+                if (response.ok) {
+                    feedback.textContent = "Email succesfully sent!";
+                    feedback.style.color = "green";
+                    form.reset();
+                } else {
+                    throw new Error(); 
+                }
+            } catch {
+                feedback.textContent = "There was an error. Try again.";
+                feedback.style.color = "red";
+            }
+
+            //  Dit zorgt ervoor dat de knop weer actief wordt en de tekst weer wordt veranderd in 'send'
+            submitButton.textContent = 'send';
+            submitButton.disabled = false;
+            submitButton.style.backgroundColor = '#e4002b'; 
+        } else {
+            feedback.textContent = 'Fill in the form correctly.';
+            feedback.style.color = 'red';
+        }
+    });
+});
