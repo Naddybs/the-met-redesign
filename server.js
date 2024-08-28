@@ -80,11 +80,22 @@ app.get('/artwork/:objectId', async (req, res) => {
 // - Dit accepteert een departmentId als query parameter
 // - Als er geen departmentId is, retourneert het een foutmelding
 app.get('/filter', async (req, res) => {
-    const { departmentId } = req.query;
-    if (!departmentId) {
+  const { departmentId } = req.query;
+  if (!departmentId) {
       return res.status(400).json({ error: 'Department ID is required' });
-    }
-  });
+  }
+
+  try {
+      const objectIDs = await fetchDepartmentObjects(departmentId);
+      const objects = await Promise.all(objectIDs.map(async (id) => {
+          return await fetchObjectDetails(id);
+      }));
+      res.json(objects); // Stuur de gefilterde objecten als JSON naar de client
+  } catch (error) {
+      res.status(500).json({ error: 'An error occurred while fetching objects' });
+  }
+});
+
   
 ////Afbeeldingen dynamisch koppelen aan departments///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
